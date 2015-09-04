@@ -11,7 +11,9 @@ foreach(p
   endif()
 endforeach()
 
-cmake_policy(SET CMP0042 OLD)
+if(POLICY CMP0042)
+  cmake_policy(SET CMP0042 OLD)
+endif()
 
 project(ITK)
 
