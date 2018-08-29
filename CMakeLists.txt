@@ -4,6 +4,7 @@ foreach(p
     CMP0025 # CMake 3.0
     CMP0028
     CMP0042 # CMake 3.0
+    CMP0048
     CMP0054 # CMake 3.1
     CMP0056 # CMake 3.2
     CMP0058 # CMake 3.3
@@ -14,7 +15,22 @@ foreach(p
   endif()
 endforeach()
 
-project(ITK NONE)
+include(${CMAKE_CURRENT_SOURCE_DIR}/CMake/ITKInitializeBuildType.cmake)
+
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/CMake ${CMAKE_MODULE_PATH})
+
+# ITK version number components.
+set(ITK_VERSION_MAJOR "4")
+set(ITK_VERSION_MINOR "13")
+set(ITK_VERSION_PATCH "1")
+set(ITK_VERSION
+    "${ITK_VERSION_MAJOR}.${ITK_VERSION_MINOR}.${ITK_VERSION_PATCH}")
+project(ITK
+  VERSION ${ITK_VERSION}
+  LANGUAGES CXX C)
+
+set(ITK_CMAKE_DIR "${ITK_SOURCE_DIR}/CMake")
+
 # Configure CMake variables that will be used in the module macros
 # ITK_USE_FILE is used when a remote module includes an example directory
 # that can be configured as an independent project.
@@ -201,6 +217,7 @@ endif()
 # built in debug, we preemptively set it to an empty string to avoid having a postfix
 # added to the ITK library names.
 set(CMAKE_DEBUG_POSTFIX "" CACHE STRING "Generate debug library name with a postfix.")
+mark_as_advanced(CMAKE_DEBUG_POSTFIX)
 
 # Setup build locations.
 if(NOT CMAKE_RUNTIME_OUTPUT_DIRECTORY)
