@@ -224,6 +224,14 @@ set(ITK_USE_TBB ${Module_ITKTBB})
 
 configure_file(src/itkConfigure.h.in itkConfigure.h)
 configure_file(src/itkConfigurePrivate.h.in itkConfigurePrivate.h)
+# Optional ITK namespace customization. By default, ITK_NAMESPACE is empty
+# and itkNamespace.h is a no-op. Set -DITK_NAMESPACE:STRING=<name> to enable.
+set(ITK_NAMESPACE "" CACHE STRING "Override the 'itk' namespace; empty = standard 'itk'.")
+mark_as_advanced(ITK_NAMESPACE)
+if(ITK_NAMESPACE)
+  set(ITK_NAMESPACE_IS_NOT_ITK 1)
+endif()
+configure_file(src/itkNamespace.h.in itkNamespace.h)
 
 set(ITKCommon_INCLUDE_DIRS ${ITKCommon_BINARY_DIR})
 set(ITKCommon_LIBRARIES ITKCommon)
@@ -231,8 +239,8 @@ set(ITKCommon_LIBRARIES ITKCommon)
 itk_module_impl()
 
 install(
-  FILES
-    ${ITKCommon_BINARY_DIR}/itkConfigure.h
+  FILES ${ITKCommon_BINARY_DIR}/itkConfigure.h
+  ${ITKCommon_BINARY_DIR}/itkNamespace.h
   DESTINATION ${ITKCommon_INSTALL_INCLUDE_DIR}
   COMPONENT Development
 )

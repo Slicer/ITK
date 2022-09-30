@@ -334,14 +334,21 @@ endif()
         )
       endif()
 
+      set(_export_custom_content [=[#include "itkNamespace.h"]=])
+
       # Generate the export macro header for symbol visibility/Windows DLL declspec
       generate_export_header(
         ${itk-module}
-        EXPORT_FILE_NAME ${_export_header_file}
-        EXPORT_MACRO_NAME ${itk-module}_EXPORT
-        NO_EXPORT_MACRO_NAME ${itk-module}_HIDDEN
-        STATIC_DEFINE ITK_STATIC
-      )
+        EXPORT_FILE_NAME
+        ${_export_header_file}
+        EXPORT_MACRO_NAME
+        ${itk-module}_EXPORT
+        NO_EXPORT_MACRO_NAME
+        ${itk-module}_HIDDEN
+        STATIC_DEFINE
+        ITK_STATIC
+        CUSTOM_CONTENT_FROM_VARIABLE
+        _export_custom_content)
       install(
         FILES
           ${_export_header_file}
