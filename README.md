@@ -56,7 +56,7 @@ git checkout -b ${BRANCH}  ${SHA}
 
 3. Cherry-pick the Slicer specific commits from last branch. Resolve conflict as needed.
 
-4. To **test the changes**, locally rebuild ITK, VTK, CTK and Slicer.
+4. To **test the changes**, locally rebuild ITK, SlicerExecutionModel, SimpleITK, CTK and Slicer.
 
 5. Publish the branch. (directly in this repo if you have push rights, or on a fork)
 
