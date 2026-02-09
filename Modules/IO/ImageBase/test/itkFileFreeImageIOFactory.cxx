@@ -26,17 +26,17 @@
  * Routine that is called when the shared library is loaded by
  * itk::ObjectFactoryBase::LoadDynamicFactories().
  *
- * itkLoad() is C (not C++) function.
+ * slicer_itkLoad() is C (not C++) function.
  */
 extern "C"
 {
   ITKIOImageBase_EXPORT itk::ObjectFactoryBase *
-                        itkLoad();
+                        slicer_itkLoad();
 }
 
 
 itk::ObjectFactoryBase *
-itkLoad()
+slicer_itkLoad()
 {
   static itk::FileFreeImageIOFactory::Pointer f = itk::FileFreeImageIOFactory::New();
   return f;

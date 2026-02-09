@@ -405,9 +405,9 @@ ObjectFactoryBase::LoadLibrariesInPath(const char * path)
       if (lib)
       {
         /**
-         * Look for the symbol itkLoad in the library
+         * Look for the symbol slicer_itkLoad in the library
          */
-        auto loadfunction = (ITK_LOAD_FUNCTION)DynamicLoader::GetSymbolAddress(lib, "itkLoad");
+        auto loadfunction = (ITK_LOAD_FUNCTION)DynamicLoader::GetSymbolAddress(lib, "slicer_itkLoad");
         /**
          * if the symbol is found call it to create the factory
          * from the library

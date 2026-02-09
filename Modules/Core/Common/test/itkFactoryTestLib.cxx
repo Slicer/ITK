@@ -174,11 +174,11 @@ private:
  * Routine that is called when the shared library is loaded by
  * itk::ObjectFactoryBase::LoadDynamicFactories().
  *
- * itkLoad() is C (not C++) function.
+ * slicer_itkLoad() is C (not C++) function.
  */
 static ImportImageContainerFactory::Pointer staticImportImageContainerFactory;
 itk::ObjectFactoryBase *
-itkLoad()
+slicer_itkLoad()
 {
   staticImportImageContainerFactory = ImportImageContainerFactory::New();
   return staticImportImageContainerFactory;
